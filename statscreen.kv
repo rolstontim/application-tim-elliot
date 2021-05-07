@@ -1,0 +1,31 @@
+#code for stat screen
+<StatScreen>:
+    name: "StatScreen"
+
+    Label:
+        text:
+            "Yus"
+
+    BoxLayout:
+
+        canvas:
+            Color:
+                rgba: (0.3,0.3,0.3,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+
+        ScrollView:
+
+            do_scroll_x: False
+            do_scroll_y: True
+
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                text_size: self.width, None
+                padding: 10, 10
+                text:
+                    'really some amazing text\n' * 100
