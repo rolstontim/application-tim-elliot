@@ -10,14 +10,21 @@ class HomeScreen(Screen):
 
 
 #code for detecting upward swipe on bottom of screen - if so then change to stat_screen
+
     def on_touch_move(self, touch):
         if touch.y < self.height/4:
 
+            if touch.dy > 0.03*self.height:
 
-
-            if touch.y > touch.oy + self.height/10 or touch.dy > 0.04*self.height:
-                print(touch.y, touch.oy)
                 TimeShamer.get_running_app().change_screen("stat_screen")
+
+
+    def on_touch_up(self,touch):
+        if touch.oy < self.height*(1/4):
+
+            if touch.y > self.height*1/3:
+
+                TimeShamer.get_running_app().change_screen("home_screen")
 
 
 
@@ -31,13 +38,20 @@ class StatScreen(Screen):
         if touch.oy > self.height*(3/4):
 
 
-            self.y = -(self.height - touch.y)
 
-            if touch.y < self.height*1/2 or touch.dy < -0.04*self.height:
+
+            if touch.dy < -0.03*self.height:
                 TimeShamer.get_running_app().change_screen("home_screen")
 
     def on_touch_up(self,touch):
-        self.y = 0
+
+
+
+        if touch.oy > self.height*(3/4):
+
+            if touch.y < self.height*2/3:
+
+                TimeShamer.get_running_app().change_screen("home_screen")
 
 #class WindowManager(ScreenManager):
 #   pass
