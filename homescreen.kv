@@ -1,8 +1,42 @@
+#:import utils kivy.utils
+
 #code for home screen
 <HomeScreen>:
-    name: "HomeScreen"
+    #name: "HomeScreen"
+
+    FloatLayout:
+        canvas:
+            Color:
+                id: background_colour
+                rgb: utils.get_color_from_hex("#39B3B4")
+            Rectangle:
+                source: './backgrounds/gradient2.png'
+                size: self.size
+                pos: self.pos
+    #for settings
+        GridLayout:
+            rows: 1
+            pos_hint: {"top": 1, "left": 1}
+            size_hint: 1, 0.025
+
+        Label:
+            pos_hint: {"top": 1, "left": 1}
+            size_hint: 0.50, 0.10
+            text: "good morning"
+            id: greetings
+    #for most recent objective display
+        Label:
+            post_hint: {"top": .975, "left": 1}
+            size_hint: 1, 1.5
+            text: "Most recent objective"
+            id: recent_objective
+    #for swipe arrow (temp until I make arrow image)
+        Label:
+            pos_hint: {"top": .05, "left": 1 }
+            size_hint: 1, 0.025
+            text:"^"
 
 
-    Label:
-        text: "Welcome to Time Shamer"
-        markup: True
+    #Label:
+    #    text: "Welcome to Time Shamer"
+    #    markup: True
