@@ -6,50 +6,57 @@ from kivy.uix.screenmanager import ScreenManager,  Screen, CardTransition
 from kivy.lang import Builder
 
 
-
 class HomeScreen(Screen):
 
-    #apparently there is a carousel function that might be worth looking into
-    #instead of doing it like this
-    def on_touch_move(self,touch):
-        if touch.y < self .height/4:
-            TimeShamer.get_running_app().change_screen('Window2')
+
+#code for detecting upward swipe on bottom of screen - if so then change to stat_screen
+    def on_touch_move(self, touch):
+        if touch.y < self.height/4:
+            if touch.y > touch.oy + 50:
+                print(touch.y, touch.oy)
+                TimeShamer.get_running_app().change_screen("stat_screen")
 
 
 
-class Window2(Screen):
 
-    def on_touch_move(self,touch):
-        if touch.y > self.height*3/4:
-            TimeShamer.get_running_app().change_screen('HomeScreen')
-    pass
+class StatScreen(Screen):
 
-
-class WindowManager(ScreenManager):
-    pass
+#to detect downward swipe on top of screen - if so then change to home_screen
+    def on_touch_move(self, touch):
+        if touch.y > self.height*(3/4):
+            if touch.y < touch.oy - 50:
+                TimeShamer.get_running_app().change_screen("home_screen")
 
 
-kv = Builder.load_file('TimeShamer.kv')
+#class WindowManager(ScreenManager):
+#   pass
+
+
+kv = Builder.load_file("TimeShamer.kv")
 
 class TimeShamer(App):
     def build(self):
-        return kv
+        #defined at bottom - for kv file
+        return GUI
 
 
     def change_screen(self, screen_name):
 
-        #the way I implemented the kv file the root is the screen manager idk
-        #if this is the best way to implement it
-        screen_manager = self.root
+        screen_manager = self.root.ids["screen_manager"]
 
+        #screen_manager.current = screen_name
 
-        if screen_name == 'Window2':
-            screen_manager.transition = CardTransition(direction = 'up')
+        #transitions for home to stat screen
+        if screen_name == "stat_screen":
+            print("in here")
+            screen_manager.transition = CardTransition(direction = "up")
+            #screen_manager.current = screen_name
 
-
-        else:
-            screen_manager.transition = CardTransition(direction = 'down', mode = 'pop')
-
+        #transitions for stat to home screen
+        if screen_name == "home_screen":
+            #print("in here")
+            screen_manager.transition = CardTransition(direction = "down", mode = "pop")
+            #screen_manager.current = screen_name
 
         screen_manager.current = screen_name
 
@@ -57,6 +64,7 @@ class TimeShamer(App):
     def quit_app(self):
         TimeShamer().stop()
 
+GUI = Builder.load_file("TimeShamer.kv")
 
 if __name__ == '__main__':
     TimeShamer().run()
