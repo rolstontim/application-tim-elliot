@@ -1,26 +1,38 @@
-<BoxLayout>:
-    orientation: 'vertical'
+WindowManager:
+    Window1:
+
+    Window2:
+
+
+<Window1>:
+    name: "Window1"
 
     Button:
-        id: btn1
-        text: "button 1"
-        background_color: 0.1,0.2,0.3,1
+        text: 'go to window 2'
+        on_release: app.root.current = 'Window2'
 
 
-    Button:
-        id: btn1
-        text: 'button 2'
-        background_color: 0.1,0.2,0.3,1
 
 
-    ScrollView:
-        do_scroll_x: False
-        do_scroll_y: True
+<Window2>:
+    name: "Window2"
 
-        Label:
-            size_hint_y: None
-            height: self.texture_size[1]
-            text_size: self.width, None
-            padding: 10,10
-            text:
-                'stop wasting time\n'*100
+
+    BoxLayout:
+
+        Button:
+            text: "go back"
+            on_release: app.root.current = 'Window1'
+
+        ScrollView:
+
+            do_scroll_x: False
+            do_scroll_y: True
+
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                text_size: self.width, None
+                padding: 10, 10
+                text:
+                    'really some amazing text\n' * 100
