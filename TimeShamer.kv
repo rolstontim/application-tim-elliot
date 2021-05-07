@@ -1,16 +1,17 @@
 WindowManager:
-    Window1:
+
+    HomeScreen:
 
     Window2:
 
 
-<Window1>:
-    name: "Window1"
+<HomeScreen>:
+    name: "HomeScreen"
 
-    Button:
-        text: 'go to window 2'
-        on_release: app.root.current = 'Window2'
 
+    Label:
+        text: "Welcome to Time Shamer"
+        markup: True
 
 
 
@@ -20,9 +21,14 @@ WindowManager:
 
     BoxLayout:
 
-        Button:
-            text: "go back"
-            on_release: app.root.current = 'Window1'
+        canvas:
+            Color:
+                rgba: (0.3,0.3,0.3,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
 
         ScrollView:
 
