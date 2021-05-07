@@ -1,44 +1,25 @@
-WindowManager:
+#ensure to include homescreen and statscreen kv files for usage
 
-    HomeScreen:
-
-    Window2:
-
-
-<HomeScreen>:
-    name: "HomeScreen"
+#:include ./homescreen.kv
+#:include ./statscreen.kv
 
 
-    Label:
-        text: "Welcome to Time Shamer"
-        markup: True
+#WindowManager:
 
+#    HomeScreen:
 
+#    Window2:
 
-<Window2>:
-    name: "Window2"
+#temp layout of screens
+GridLayout:
+    cols: 1
+    ScreenManager:
+        id: screen_manager
 
+        HomeScreen:
+            name: "home_screen"
+            id: home_screen
 
-    BoxLayout:
-
-        canvas:
-            Color:
-                rgba: (0.3,0.3,0.3,1)
-
-            Rectangle:
-                size: self.size
-                pos: self.pos
-
-
-        ScrollView:
-
-            do_scroll_x: False
-            do_scroll_y: True
-
-            Label:
-                size_hint_y: None
-                height: self.texture_size[1]
-                text_size: self.width, None
-                padding: 10, 10
-                text:
-                    'really some amazing text\n' * 100
+        StatScreen:
+            name:"stat_screen"
+            id: stat_screen
