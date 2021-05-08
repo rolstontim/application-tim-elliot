@@ -2,8 +2,9 @@ import kivy
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.screenmanager import ScreenManager,  Screen, CardTransition
+from kivy.uix.screenmanager import ScreenManager,  Screen, CardTransition, SwapTransition, FadeTransition
 from kivy.lang import Builder
+
 
 
 class HomeScreen(Screen):
@@ -20,6 +21,7 @@ class HomeScreen(Screen):
 
 
     def on_touch_up(self,touch):
+        print("hey")
         if touch.oy < self.height*(1/4):
 
             if touch.y > self.height*1/3:
@@ -74,13 +76,13 @@ class TimeShamer(App):
 
         #transitions for home to stat screen
         if screen_name == "stat_screen":
-            print("in here")
-            screen_manager.transition = CardTransition(direction = "up")
+            print("go to stats screen")
+            screen_manager.transition = CardTransition(direction = "up", mode = "pop")
             #screen_manager.current = screen_name
 
         #transitions for stat to home screen
         if screen_name == "home_screen":
-            #print("in here")
+            print("go to home screen")
             screen_manager.transition = CardTransition(direction = "down", mode = "pop")
             #screen_manager.current = screen_name
 
