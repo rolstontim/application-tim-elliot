@@ -48,10 +48,12 @@ class Scroll(ScrollView):
 
 
 
+
 class Myapp(App):
     def build(self):
-
-        return Scroll(['motivators/short'],[100],size_hint = (1,None), do_scroll_y = True)
+        ret = GridLayout()
+        ret.add_widget(Scroll(['motivators/short'],[20]))
+        return ret
 
 
 
