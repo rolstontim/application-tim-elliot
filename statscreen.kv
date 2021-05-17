@@ -3,37 +3,44 @@
 
 <StatScreen>:
 
+    ScrollView:
+
+        pos_hint: {"top": 1, "left": 1}
+        size_hint: 1, 1
+        do_scroll_x: False
+        do_scroll_y: True
+
+        GridLayout:
+        #colour and background
+            canvas:
+                Color:
+                    id: background_colour
+                    rgb: utils.get_color_from_hex("#39B3B4")
+                Rectangle:
+                    source: './backgrounds/gradient2.png'
+                    size: self.size
+                    pos: self.pos
+            id: stat_list
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+            #size of each row in stat screen
+            row_default_height: "80dp"
+            row_force_default: True
 
 
-    name: "StatScreen"
-
-    Label:
-        text:
-            "Yus"
-
-    BoxLayout:
-
-        canvas:
-            Color:
-                rgba: (0.3,0.3,0.3,1)
-
-            Rectangle:
-                size: self.size
-                pos: self.pos
-
-        
 
 
-        ScrollView:
+#        ScrollView:
 
 
-            do_scroll_x: False
-            do_scroll_y: True
+#            do_scroll_x: False
+#            do_scroll_y: True
 
-            Label:
-                size_hint_y: None
-                height: self.texture_size[1]
-                text_size: self.width, None
-                padding: 10, 10
-                text:
-                    'really some amazing text\n' * 100
+#            Label:
+#                size_hint_y: None
+#                height: self.texture_size[1]
+#                text_size: self.width, None
+#                padding: 10, 10
+#                text:
+#                    'really some amazing text\n' * 100
