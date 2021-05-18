@@ -4,14 +4,10 @@ from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager,  Screen, CardTransition
 from kivy.lang import Builder
-<<<<<<< HEAD
-from Scroll import Scroll
-=======
 
 from scroll import Scroll
 import random
 
->>>>>>> 5f97d9ffe1ff2870700b156f2e11792903efaa6c
 
 class HomeScreen(Screen):
 
@@ -38,7 +34,7 @@ class HomeScreen(Screen):
 
 class StatScreen(Screen):
 
-    
+
 
 
 #to detect downward swipe on top of screen - if so then change to home_screen
