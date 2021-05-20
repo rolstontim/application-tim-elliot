@@ -1,7 +1,7 @@
 import kivy
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager,  Screen, CardTransition
 from kivy.lang import Builder
 
@@ -94,7 +94,6 @@ class TimeShamer(App):
 
         #transitions for home to stat screen
         if screen_name == "stat_screen":
-            print("in here")
             screen_manager.transition = CardTransition(direction = "up")
             #screen_manager.current = screen_name
 
@@ -120,6 +119,24 @@ class TimeShamer(App):
         category = "short"
         minute_multiplyer = 1
 
+
+        #populate 4 list of motivators (life_impacting, long, medium, short)
+        with open("motivators/life_impacting") as f_life_impacting:
+            next(f_life_impacting)
+            life_impacting_list = f_life_impacting.readlines()
+
+        with open("motivators/long") as f_long:
+            next(f_long)
+            long_list = f_long.readlines()
+
+        with open("motivators/medium") as f_medium:
+            next(f_medium)
+            medium_list = f_medium.readlines()
+
+        with open("motivators/short") as f_short:
+            next(f_short)
+            short_list = f_short.readlines()
+
         #Populate list of applications and their usage (time) in minutes
         with open(filename) as fp:
             app_lines = fp.readlines()
@@ -128,11 +145,11 @@ class TimeShamer(App):
 
             #get name of app
             app_name = app_line[:app_line.find(",")]
-            print("APP NAME: ", app_name)
+            #print("APP NAME: ", app_name)
 
             #get time used of append
             app_time = int(app_line[app_line.find(",") + 1:app_line.find('\n')])
-            print("APP TIME: ", app_time)
+            #print("APP TIME: ", app_time)
 
             #determine motivator category
             if (mot_short < app_time and app_time < mot_medium):
@@ -150,19 +167,34 @@ class TimeShamer(App):
 
 
             #go into correct category and populate new list with motivators within app_time range
-            with open("motivators/" + category) as f:
-                next(f)
-                motivators = f.readlines()
+            #with open("motivators/" + category) as f:
+            #    next(f)
+            #    motivators = f.readlines()
+
+            #pick correct category of motivator and make equal to motivators
+            if(category == "short"):
+                motivators = short_list
+            if(category == "medium"):
+                motivators = medium_list
+            if(category == "long"):
+                motivators = long_list
+            if(category == "life_impacting"):
+                motivators = life_impacting_list
+
             i = 0
             #remove motivators that are out of range of app_time (ie motivator time > app_time via minutes)
             for motivator_line in motivators:
 
                 if (int(motivator_line[motivator_line.find(",") + 1:motivator_line.find('\n')]) * minute_multiplyer > app_time):
                     del motivators[i]
+
                 i += 1
+
 
             #pick random motivator from motivators to represent
             motivator = random.choice(motivators)
+            #ensure to remove motivator from correct list for no repeats
+            motivators.remove(motivator)
 
             #get name of random motivator
             motivator_name = motivator[:motivator.find(",")]
