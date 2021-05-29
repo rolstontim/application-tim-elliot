@@ -3,6 +3,13 @@
 
 <StatScreen>:
 
+#implement wrap funtion - wraps text into size that will fit on screen and
+#adjusts the pos of image and label
+
+
+#combine cols passed into scroll.py to create one large widget that will react with itself
+# OR || find a way to make dynamic text wrapping react to the labels/images around itself
+
     ScrollView:
 
         pos_hint: {"top": 1, "left": 1}
@@ -27,20 +34,3 @@
             #size of each row in stat screen
             row_default_height: "80dp"
             row_force_default: True
-
-
-
-
-#        ScrollView:
-
-
-#            do_scroll_x: False
-#            do_scroll_y: True
-
-#            Label:
-#                size_hint_y: None
-#                height: self.texture_size[1]
-#                text_size: self.width, None
-#                padding: 10, 10
-#                text:
-#                    'really some amazing text\n' * 100

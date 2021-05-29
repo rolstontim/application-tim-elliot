@@ -18,6 +18,9 @@ class Scroll(GridLayout):
         #app_image_layout = FloatLayout()
         #app_image = Image(source = "backgrounds/app_image.png", size_hint=(1, 0.8), pos_hint={"top": 1, "right": 1})
 
+
+        #it may be better to use a GridLayout for a more dynamic allocation of labels
+
         stat_screen = FloatLayout()
         app_image = Image(source = "backgrounds/app_image.png", size_hint=(1.8, 0.8), pos_hint={"top": 1, "right": 1})
         app_label = Label(text=app_name, size_hint=(0.8, 0.8), pos_hint={"top": 1, "right": 1})

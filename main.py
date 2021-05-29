@@ -203,6 +203,12 @@ class TimeShamer(App):
             time_spent = int(motivator[motivator.find(",") + 1:motivator.find('\n')]) * minute_multiplyer
             time_spent = app_time/time_spent
 
+
+            #TO BE CHANGED
+
+            #populate one text variable to carry all lines of labels in combination with images and stats
+            #then send text variable into wrapping scroll function for dynamic movement of list
+
             #call scroll function to display widget of app stat in stat screen
             s = Scroll(app_name,motivator_name)
             #put wrapped widget from Scroll class into stat_screen for display
